@@ -1,0 +1,26 @@
+h2 {
+    text-align: center
+}
+
+h3 {
+    text-align: center
+}
+
+h4 {
+    text-align: center 
+}
+
+div {
+    text-align: center
+}
+
+.card {
+    max-width: 50rem; 
+    width: 1000px; 
+    height: 150px; 
+    margin: 0 auto
+}
+
+button {
+    margin-right: 0vmax
+}

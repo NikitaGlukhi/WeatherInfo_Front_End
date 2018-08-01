@@ -1,0 +1,20 @@
+<h2>Здесь можно добавить город, информацию по которому вы хотите получить</h2>
+<h3>ВНИМАНИЕ! Название города вводится на английском языке. Убедитесь в правильности введенных данных, иначе интересующая Вас информация не будет получена</h3> 
+<div class="card">
+  <div class="card-header">
+      <h4 style="text-align: center">Add new city</h4>
+  </div>
+    <div class="card-body">
+     <div class="input-group mb-3">
+      <form autocomplete="off" (ngSubmit)="onSubmit()">
+         <div>
+            <input type="text" placeholder="Enter city name" aria-label="Add term" [(ngModel)]="city.city_name" aria-describedby="basic-addon" [ngModelOptions]="{standalone: true}" required>
+              <button type="submit" class="btn btn-secondary">Add city</button>
+          </div>
+        </form>
+      </div>
+    </div>
+</div>
+
+<h4>Удалить ненужный Вам город или удалить неправильно названный город</h4>
+<div *ngFor="let cityinfo of cities">{{cityinfo.city_name}}<button class="btn btn-danger" type="button" (click)="onDelete(cityinfo._id)">DELETE</button></div> 
