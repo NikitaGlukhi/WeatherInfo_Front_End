@@ -8,7 +8,7 @@ const httpOptions = {
   };
 
 @Injectable()
-export class AppService { 
+export class AppService {
 
     constructor(private http: HttpClient) {  }
 
@@ -24,19 +24,19 @@ export class AppService {
       };
 
     getCurrent(lat: number, lng: number): Observable<any> {
-        return this.http.get('http://api.openweathermap.org/data/2.5/weather?lat='+ lat +'&lon=' + lng + '&APPID=c308d9f307529fb075e0920a02f8ff75&units=metric').pipe(
+        return this.http.get('https://api.openweathermap.org/data/2.5/weather?lat='+ lat +'&lon=' + lng + '&APPID=c308d9f307529fb075e0920a02f8ff75&units=metric').pipe(
           catchError(this.handleError)
    )
     }
 
    getForecastCoords(lat: number, lng: number): Observable<any> {
-     return this.http.get('http://api.openweathermap.org/data/2.5/forecast?lat='+ lat +'&lon=' + lng + '&APPID=c308d9f307529fb075e0920a02f8ff75&units=metric').pipe(
+     return this.http.get('https://api.openweathermap.org/data/2.5/forecast?lat='+ lat +'&lon=' + lng + '&APPID=c308d9f307529fb075e0920a02f8ff75&units=metric').pipe(
        catchError(this.handleError)
      )
-   } 
+   }
 
     getForecast(cityinfo): Observable<any> {
-        return this.http.get('http://api.openweathermap.org/data/2.5/forecast?q='+ cityinfo +'&APPID=c308d9f307529fb075e0920a02f8ff75&units=metric').pipe(
+        return this.http.get('https://api.openweathermap.org/data/2.5/forecast?q='+ cityinfo +'&APPID=c308d9f307529fb075e0920a02f8ff75&units=metric').pipe(
           catchError(this.handleError)
         )
     }
@@ -44,9 +44,9 @@ export class AppService {
     addCity(data) {
       return this.http.post('/api-city/city-create', data, httpOptions).pipe(
           catchError(this.handleError)
-      ) 
+      )
     }
-  
+
     getCity() {
       return this.http.get('/api-city/cities', httpOptions).pipe(
         catchError(this.handleError)

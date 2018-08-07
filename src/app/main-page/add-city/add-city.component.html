@@ -1,10 +1,10 @@
-<h2>Здесь можно добавить город, информацию по которому вы хотите получить</h2>
-<h3>ВНИМАНИЕ! Название города вводится на английском языке. Убедитесь в правильности введенных данных, иначе интересующая Вас информация не будет получена</h3> 
 <div class="card">
   <div class="card-header">
       <h4 style="text-align: center">Add new city</h4>
   </div>
     <div class="card-body">
+     <h3 class="card-title">Здесь можно добавить город, информацию по которому вы хотите получить</h3>
+     <p class="card-text">ВНИМАНИЕ! Название города вводится на английском языке. Убедитесь в правильности введенных данных, иначе интересующая Вас информация не будет получена</p>
      <div class="input-group mb-3">
       <form autocomplete="off" (ngSubmit)="onSubmit()">
          <div>
@@ -15,6 +15,12 @@
       </div>
     </div>
 </div>
-
+<br>
+<h1> </h1>
 <h4>Удалить ненужный Вам город или удалить неправильно названный город</h4>
-<div *ngFor="let cityinfo of cities">{{cityinfo.city_name}}<button class="btn btn-danger" type="button" (click)="onDelete(cityinfo._id)">DELETE</button></div> 
+<div *ngFor="let cityinfo of cities">
+  <div class="card card-body" style="max-width: 50rem; width: 420px;height: 150px; margin: 0 auto">
+    <h4 class="card-title">{{cityinfo.city_name}}</h4>
+    <button class="btn btn-danger" type="submit" (click)="onDelete(cityinfo._id)">DELETE</button>
+  </div>
+</div>
