@@ -10,6 +10,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class MainPageComponent implements OnInit {
   weathers1: any = {};
   weathers2: any = {};
+  current_temp: number;
+  current_sea_level: number;
+  coord_lat: number;
+  coord_lng: number;
+  degrees: string;
+  x: any;
 
   lat: number;
   lng: number;
@@ -22,7 +28,7 @@ export class MainPageComponent implements OnInit {
         this.lat = position.coords.latitude;
         this.lng = position.coords.longitude;
         this.current();
-        this.forecastcoords();  
+        this.forecastcoords();
       });
     } else {
       this.lat = 51.5073;
@@ -34,11 +40,27 @@ export class MainPageComponent implements OnInit {
     this.weather.getCurrent(this.lat, this.lng)
     .subscribe(res => {
       this.weathers1 = res;
+      console.log(this.weathers1);
+      this.current_temp = Math.round(res.main.temp);
+      this.current_sea_level = Math.round(res.main.sea_level);
+      this.coord_lat = Math.round(res.coord.lat);
+      this.coord_lng = Math.round(res.coord.lon);
+      function getDegrees(degree = res.wind.deg) {
+        if(degree>337.5) return 'Northerly';
+        if(degree>292.5) return 'North Westerly';
+        if(degree>247.5) return 'Westerly';
+        if(degree>202.5) return 'South Westerly';
+        if(degree>157.5) return 'Southerly';
+        if(degree>122.5) return 'South Easterly';
+        if(degree>67.5) return 'Easterly';
+        if(degree>22.5){return 'North Easterly';}
+        return 'Northerly';
+      }
+      this.degrees = getDegrees(this.x);
     }, err => {
       console.error(err);
     });
   }
-
   forecastcoords() {
     this.weather.getForecastCoords(this.lat, this.lng)
     .subscribe(res => {
@@ -46,5 +68,5 @@ export class MainPageComponent implements OnInit {
     }, err => {
       console.error(err);
     })
-  } 
+  }
 }

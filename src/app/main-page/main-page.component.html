@@ -1,33 +1,35 @@
 <h1 *ngIf="router.url === '/main-page'">
     Your local weather current/forecast
-</h1>             
+</h1>
 <div *ngIf="router.url === '/main-page'" class="current">
   <div *ngFor="let weather of weathers1?.weather">
     <h1>Current weather in {{weathers1?.name}}, {{weathers1?.sys?.country}}</h1>
-    <h2><img src="http://openweathermap.org/img/w/{{weather?.icon}}.png">{{weathers1?.main?.temp}} &#176;С</h2>
+    <h2><img src="http://openweathermap.org/img/w/{{weather?.icon}}.png">{{current_temp}} &#176;С</h2>
       <table class="table">
         <thead>
           <tr>
             <th>Cloudiness</th>
             <th>Wind</th>
-            <th>Min Temperature</th>
-            <th>Max Temperature</th>
+            <th>Sea level</th>
             <th>Humidity</th>
             <th>Pressure</th>
+            <th>Wind degrees</th>
+            <th>Geo coords</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>{{weather?.description}}</td>
             <td>{{weathers1?.wind?.speed}} m/s</td>
-            <td>{{weathers1?.main?.temp_min}} &#176;С</td>
-            <td>{{weathers1?.main?.temp_max}} &#176;С</td>
+            <td>{{current_sea_level}} m</td>
             <td>{{weathers1?.main?.humidity}} %</td>
             <td>{{weathers1?.main?.pressure}} hpa</td>
-          </tr>  
+            <td>{{degrees}}</td>
+            <td style="color: red">[{{coord_lat}}, {{weathers1?.coord?.lon}}]</td>
+          </tr>
         </tbody>
       </table>
-  </div>  
+  </div>
 </div>
 
 <div *ngIf="router.url === '/main-page'" class="forecast">
@@ -49,7 +51,7 @@
         </thead>
         <tbody *ngFor="let weather1 of weathers2?.list">
           <tr>
-            <td>{{weather1?.dt_txt | date: 'MMMM dd'}}</td>
+            <td>{{weather1?.dt_txt | date: 'MMMM d'}}</td>
             <td>{{weather1?.dt_txt | date: 'HH:mm'}}</td>
             <td><img src="http://openweathermap.org/img/w/{{weather1?.weather[0].icon}}.png"></td>
             <td>{{weather1?.weather[0].description}}</td>
@@ -64,3 +66,6 @@
     </div>
 </div>
 <router-outlet></router-outlet>
+
+
+
